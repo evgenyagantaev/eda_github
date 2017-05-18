@@ -24,7 +24,8 @@ int voltage_temperature_current_flag = 0;
 
 
 //----------------------------global constants----------------------------------
-const double CURRENT_COEFFICIENT = 12500.0/4096.0/2.0;
+const double CURRENT_COEFFICIENT = 12500.0/4096.0/2.0*4.83;
+const double VOLTAGE_COEFFICIENT = 2.3;
 
 char VERSION[] = "003-007";
 
@@ -580,7 +581,7 @@ void measure_voltage_temperature()
     //debug*****
     //voltage = (double)common.ad7691Data;
     //debug*****
-    voltage = voltage*2041.0/262144.0*7.675;
+    voltage = voltage*2041.0/262144.0*VOLTAGE_COEFFICIENT;
     // voltage data output
     //debug
     //printf("%d\r\n", common.ads8320Data);
@@ -657,7 +658,7 @@ void plot_output(int output_slowly)
         
         for(j=0; j<samples_in_one_pulse; j++)
         {
-            sprintf(voltage_message, "%7.1f", (double)(data_buffer[k*samples_in_one_pulse + j])*2041.0/262144.0*7.675);
+            sprintf(voltage_message, "%7.1f", (double)(data_buffer[k*samples_in_one_pulse + j])*2041.0/262144.0*VOLTAGE_COEFFICIENT);
             uart.transmitMessage(voltage_message);
             uart.transmitMessage("\r\n");
             //printf("%s\r\n", voltage_message);
