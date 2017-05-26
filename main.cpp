@@ -26,7 +26,7 @@ int voltage_temperature_current_flag = 0;
 //----------------------------global constants----------------------------------
 const double CURRENT_COEFFICIENT = 12500.0/4096.0/2.0;
 
-char VERSION[] = "003-007";
+char VERSION[] = "005-012 (EDA 4 12V 26.05.2017)";
 
 //--------------------------end global constants--------------------------------
 
